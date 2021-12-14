@@ -553,25 +553,6 @@ f f f f f f f f f f f f f f f f
 8 1 1 1 1 1 1 1 1 1 1 1 1 1 8 
 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 
 `;
-            case "image29":
-            case "transfertest":return img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . f . . . . . . . . 
-. . . . . . f f f . . . . . . . 
-. . . . . f 1 f 1 f . . . . . . 
-. . . . . f 1 f 1 f f . . . . . 
-. . . . f 1 8 f 8 1 f . . . . . 
-. . . . f 8 1 f 1 8 1 f . . . . 
-. . . f 1 8 1 f 1 8 1 f f . . . 
-. . . f 1 8 1 f 1 8 8 1 f . . . 
-. . f 1 8 1 1 f 1 1 1 8 1 f . . 
-. . f f f f f f f 8 8 8 f f . . 
-. . . . . . . f . . . . . . . . 
-. f f f f f f f f f f f f f f . 
-. . f 8 1 8 1 8 1 8 1 8 1 f . . 
-. . . f f f f f f f f f f . . .
-       `;
        }
         return null;
     })
