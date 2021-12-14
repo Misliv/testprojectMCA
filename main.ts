@@ -87,7 +87,7 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
 function snap () {
     mySprite.destroy()
     game.setDialogFrame(assets.image`Textbox`)
-    game.showLongText("why would you think it's a good idea to ram a rock with a boat don't you remember what happened to the titanic?", DialogLayout.Center)
+    game.showLongText("why would you think it's a good idea to ram a rock with a boat don't you remember what happened to the titanic?", DialogLayout.Bottom)
 }
 controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
     scene.setBackgroundColor(9)
