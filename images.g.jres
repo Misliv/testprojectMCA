@@ -149,6 +149,16 @@
         "mimeType": "image/x-mkcd-f4",
         "displayName": "FireFighterSpecialActionUp"
     },
+    "image30": {
+        "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC7u7+7u7+7u7u7v7u7v7u7u7u/u7u/u7u7u7+7u7+7uwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "ClawPipe"
+    },
+    "image31": {
+        "data": "hwQQABAAAAAAAADgDgAAAAAAAO4AAAAAAADgDgAAAAAAAO4AAAAAAAAADgAAAAAAAAAOAAAAAABPRA8AAAAAAE9EDwAAAAAAT0QPAAAAAABPRA8AAAAAAAAADgAAAAAAAAAOAAAAAAAAAO4AAAAAAAAA4A4AAAAAAAAA7gAAAAAAAADgDgAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "claw"
+    },
     "anim3": {
         "namespace": "myAnimations",
         "id": "anim3",

@@ -48,7 +48,7 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     } else {
         animation.runImageAnimation(
         mySprite,
-        assets.animation`FireFighterLeftAnim0`,
+        assets.animation`FireFighterLeftAnim`,
         150,
         true
         )
