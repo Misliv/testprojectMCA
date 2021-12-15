@@ -2,113 +2,102 @@ namespace SpriteKind {
     export const Test = SpriteKind.create()
 }
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (PlayerStage == 1) {
+    if (PlayerStages == 1) {
         animation.runImageAnimation(
-        mySprite,
+        PlayerSprite,
         assets.animation`FireFighterAnimUp`,
         150,
         true
         )
-        CurrentAnim = 1
+        CurrentPlayerAnim = 1
     }
 })
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     scene.setBackgroundColor(7)
-    PlayerStage = 1
-    animation.stopAnimation(animation.AnimationTypes.All, mySprite)
-    mySprite.setImage(assets.image`ClimatianFireFighter0`)
-    controller.moveSprite(mySprite, 20, 20)
+    PlayerStages = 1
+    animation.stopAnimation(animation.AnimationTypes.All, PlayerSprite)
+    PlayerSprite.setImage(assets.image`ClimatianFireFighter0`)
+    controller.moveSprite(PlayerSprite, 20, 20)
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    animation.stopAnimation(animation.AnimationTypes.All, mySprite)
-    if (CurrentAnim == 0 && PlayerStage == 1) {
-        mySprite.setImage(assets.image`FireFighterSpecialActionDown`)
-        projectile = sprites.createProjectileFromSprite(assets.image`WaterBlastDown`, mySprite, 0, 100)
-    } else if (CurrentAnim == 1) {
-        mySprite.setImage(assets.image`FireFighterSpecialActionUp`)
-        projectile = sprites.createProjectileFromSprite(assets.image`WaterBlastUp`, mySprite, 0, -100)
-    } else if (CurrentAnim == 2) {
-        mySprite.setImage(assets.image`FireFighterSpecialActionRight`)
-        projectile = sprites.createProjectileFromSprite(assets.image`WaterBlastRight`, mySprite, 100, 0)
-    } else if (CurrentAnim == 3) {
-        mySprite.setImage(assets.image`FireFighterSpecialActionLeft`)
-        projectile = sprites.createProjectileFromSprite(assets.image`WaterBlastLeft`, mySprite, -100, 0)
+    animation.stopAnimation(animation.AnimationTypes.All, PlayerSprite)
+    if (CurrentPlayerAnim == 0 && PlayerStages == 1) {
+        PlayerSprite.setImage(assets.image`FireFighterSpecialActionDown`)
+        WaterBolt = sprites.createProjectileFromSprite(assets.image`WaterBlastDown`, PlayerSprite, 0, 100)
+    } else if (CurrentPlayerAnim == 1) {
+        PlayerSprite.setImage(assets.image`FireFighterSpecialActionUp`)
+        WaterBolt = sprites.createProjectileFromSprite(assets.image`WaterBlastUp`, PlayerSprite, 0, -100)
+    } else if (CurrentPlayerAnim == 2) {
+        PlayerSprite.setImage(assets.image`FireFighterSpecialActionRight`)
+        WaterBolt = sprites.createProjectileFromSprite(assets.image`WaterBlastRight`, PlayerSprite, 100, 0)
+    } else if (CurrentPlayerAnim == 3) {
+        PlayerSprite.setImage(assets.image`FireFighterSpecialActionLeft`)
+        WaterBolt = sprites.createProjectileFromSprite(assets.image`WaterBlastLeft`, PlayerSprite, -100, 0)
     } else {
-        mySprite.sayText("Illegal dousing attempt", 500, false)
+        PlayerSprite.sayText("Illegal dousing attempt", 500, false)
     }
 })
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (PlayerStage == 0) {
+    if (PlayerStages == 0) {
         animation.runImageAnimation(
-        mySprite,
+        PlayerSprite,
         assets.animation`ClimarineAnimL`,
         500,
         true
         )
     } else {
         animation.runImageAnimation(
-        mySprite,
+        PlayerSprite,
         assets.animation`FireFighterLeftAnim`,
         150,
         true
         )
-        CurrentAnim = 3
+        CurrentPlayerAnim = 3
     }
 })
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (PlayerStage == 0) {
+    if (PlayerStages == 0) {
         animation.runImageAnimation(
-        mySprite,
+        PlayerSprite,
         assets.animation`ClimarineAnimR`,
         500,
         true
         )
     } else {
         animation.runImageAnimation(
-        mySprite,
+        PlayerSprite,
         assets.animation`FireFighterRightAnim`,
         150,
         true
         )
-        CurrentAnim = 2
+        CurrentPlayerAnim = 2
     }
 })
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (PlayerStage == 1) {
+    if (PlayerStages == 1) {
         animation.runImageAnimation(
-        mySprite,
+        PlayerSprite,
         assets.animation`FireFighterAnimDown`,
         150,
         true
         )
-        CurrentAnim = 0
+        CurrentPlayerAnim = 0
     }
 })
-function snap () {
-    mySprite.destroy()
-    game.setDialogFrame(assets.image`Textbox`)
-    game.showLongText("why would you think it's a good idea to ram a rock with a boat don't you remember what happened to the titanic?", DialogLayout.Bottom)
-}
 controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
     scene.setBackgroundColor(9)
-    PlayerStage = 0
-    animation.stopAnimation(animation.AnimationTypes.All, mySprite)
-    mySprite.setImage(assets.image`ClimarineR`)
-    controller.moveSprite(mySprite, 20, 20)
+    PlayerStages = 0
+    animation.stopAnimation(animation.AnimationTypes.All, PlayerSprite)
+    PlayerSprite.setImage(assets.image`ClimarineR`)
+    controller.moveSprite(PlayerSprite, 20, 20)
 })
-scene.onOverlapTile(SpriteKind.Player, assets.tile`Testoceanrocks`, function (sprite, location) {
-    snap()
-})
-let projectile: Sprite = null
-let CurrentAnim = 0
-let PlayerStage = 0
-let mySprite: Sprite = null
-tiles.setTilemap(tilemap`level1`)
+let WaterBolt: Sprite = null
+let CurrentPlayerAnim = 0
+let PlayerStages = 0
+let PlayerSprite: Sprite = null
 scene.setBackgroundColor(9)
-let CollisionTest = sprites.create(assets.image`TestGraphic`, SpriteKind.Test)
-CollisionTest.setPosition(25, 25)
-mySprite = sprites.create(assets.image`ClimarineR`, SpriteKind.Player)
-controller.moveSprite(mySprite, 20, 20)
-mySprite.setStayInScreen(false)
-scene.cameraFollowSprite(mySprite)
-PlayerStage = 0
+PlayerSprite = sprites.create(assets.image`ClimarineR`, SpriteKind.Player)
+controller.moveSprite(PlayerSprite, 20, 20)
+PlayerSprite.setStayInScreen(false)
+scene.cameraFollowSprite(PlayerSprite)
+PlayerStages = 0
