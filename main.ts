@@ -21,7 +21,7 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.stopAnimation(animation.AnimationTypes.All, mySprite)
-    if (CurrentAnim == 0) {
+    if (CurrentAnim == 0 && PlayerStage == 1) {
         mySprite.setImage(assets.image`FireFighterSpecialActionDown`)
         projectile = sprites.createProjectileFromSprite(assets.image`WaterBlastDown`, mySprite, 0, 100)
     } else if (CurrentAnim == 1) {
@@ -34,7 +34,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         mySprite.setImage(assets.image`FireFighterSpecialActionLeft`)
         projectile = sprites.createProjectileFromSprite(assets.image`WaterBlastLeft`, mySprite, -100, 0)
     } else {
-        mySprite.sayText("Illegal dousing attempt")
+        mySprite.sayText("Illegal dousing attempt", 500, false)
     }
 })
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -48,7 +48,7 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     } else {
         animation.runImageAnimation(
         mySprite,
-        assets.animation`FireFighterLeftAnim`,
+        assets.animation`FireFighterLeftAnim0`,
         150,
         true
         )
