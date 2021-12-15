@@ -37,6 +37,32 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         PlayerSprite.sayText("Illegal dousing attempt", 500, false)
     }
 })
+controller.player2.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Pressed, function () {
+    mySprite = sprites.create(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, SpriteKind.Enemy)
+    animation.runImageAnimation(
+    mySprite,
+    assets.animation`BurningTree`,
+    500,
+    false
+    )
+})
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     if (PlayerStages == 0) {
         animation.runImageAnimation(
@@ -91,13 +117,16 @@ controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
     PlayerSprite.setImage(assets.image`ClimarineR`)
     controller.moveSprite(PlayerSprite, 20, 20)
 })
+let mySprite: Sprite = null
 let WaterBolt: Sprite = null
 let CurrentPlayerAnim = 0
 let PlayerStages = 0
 let PlayerSprite: Sprite = null
+tiles.setTilemap(tilemap`Ocean`)
 scene.setBackgroundColor(9)
 PlayerSprite = sprites.create(assets.image`ClimarineR`, SpriteKind.Player)
 controller.moveSprite(PlayerSprite, 20, 20)
+tiles.placeOnTile(PlayerSprite, tiles.getTileLocation(10, 8))
 PlayerSprite.setStayInScreen(false)
 scene.cameraFollowSprite(PlayerSprite)
 PlayerStages = 0
