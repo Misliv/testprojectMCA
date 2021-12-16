@@ -61,18 +61,22 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (CurrentPlayerAnim == 0 && PlayerStages == 1) {
         PlayerSprite.setImage(assets.image`FireFighterSpecialActionDown`)
         WaterBolt = sprites.createProjectileFromSprite(assets.image`WaterBlastDown`, PlayerSprite, 0, 50)
+        music.playMelody("E B C5 - - - - - ", 1000)
         WaterBolt.setBounceOnWall(false)
-    } else if (CurrentPlayerAnim == 1) {
+    } else if (CurrentPlayerAnim == 1 && PlayerStages == 1) {
         PlayerSprite.setImage(assets.image`FireFighterSpecialActionUp`)
         WaterBolt = sprites.createProjectileFromSprite(assets.image`WaterBlastUp`, PlayerSprite, 0, -50)
+        music.playMelody("E B C5 - - - - - ", 1000)
         WaterBolt.setBounceOnWall(false)
-    } else if (CurrentPlayerAnim == 2) {
+    } else if (CurrentPlayerAnim == 2 && PlayerStages == 1) {
         PlayerSprite.setImage(assets.image`FireFighterSpecialActionRight`)
         WaterBolt = sprites.createProjectileFromSprite(assets.image`WaterBlastRight`, PlayerSprite, 50, 0)
+        music.playMelody("E B C5 - - - - - ", 1000)
         WaterBolt.setBounceOnWall(false)
-    } else if (CurrentPlayerAnim == 3) {
+    } else if (CurrentPlayerAnim == 3 && PlayerStages == 1) {
         PlayerSprite.setImage(assets.image`FireFighterSpecialActionLeft`)
         WaterBolt = sprites.createProjectileFromSprite(assets.image`WaterBlastLeft`, PlayerSprite, -50, 0)
+        music.playMelody("E B C5 - - - - - ", 1000)
         WaterBolt.setBounceOnWall(false)
     } else {
         PlayerSprite.sayText("Illegal dousing attempt", 500, false)
@@ -115,6 +119,7 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     }
 })
 function TransportToOcean () {
+    CurrentLevel = 0
     tiles.setTilemap(tilemap`Ocean`)
     scene.setBackgroundColor(9)
     PlayerStages = 0
@@ -178,6 +183,26 @@ controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
 })
 function TransportToLevel1 () {
     tiles.setTilemap(tilemap`FireLevel1`)
+    DousedFire = sprites.create(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, SpriteKind.ReplacedTile)
+    CurrentLevel = 1
+    Trackchooser = randint(0, 7)
     PlayerStages = 1
     animation.stopAnimation(animation.AnimationTypes.All, PlayerSprite)
     PlayerSprite.setImage(assets.image`ClimatianFireFighter0`)
@@ -198,6 +223,7 @@ scene.onOverlapTile(SpriteKind.Projectile, assets.tile`FireTile`, function (spri
     LocationOfFire = location
     DouseFire()
 })
+let Trackchooser = 0
 let RemainingFires = 0
 let DousedFire: Sprite = null
 let WaterBolt: Sprite = null
@@ -205,6 +231,8 @@ let LocationOfFire: tiles.Location = null
 let CurrentPlayerAnim = 0
 let PlayerStages = 0
 let PlayerSprite: Sprite = null
+let CurrentLevel = 0
+CurrentLevel = 0
 tiles.setTilemap(tilemap`Ocean`)
 scene.setBackgroundColor(9)
 PlayerSprite = sprites.create(assets.image`ClimarineR`, SpriteKind.Player)
@@ -213,3 +241,24 @@ tiles.placeOnTile(PlayerSprite, tiles.getTileLocation(10, 8))
 scene.cameraFollowSprite(PlayerSprite)
 PlayerStages = 0
 info.setScore(0)
+forever(function () {
+    while (CurrentLevel == 0) {
+        music.playMelody("C D - C D - A B ", 240)
+        music.playMelody("E F - D E - G - ", 240)
+        music.playMelody("A G - E F - D - ", 240)
+        music.playMelody("B A - G A E F - ", 240)
+    }
+    while (CurrentLevel == 1) {
+        if (Trackchooser == 6) {
+            music.playMelody("D - E - C - D - ", 120)
+            music.playMelody("C - D - E C - D ", 120)
+            music.playMelody("C - D - C - D - ", 120)
+            music.playMelody("E - D - F - C - ", 120)
+        } else {
+            music.playMelody("D E F D E D C D ", 480)
+            music.playMelody("E - D E - F D C ", 480)
+            music.playMelody("D E F G - F C D ", 400)
+            music.playMelody("E D - F A D C - ", 500)
+        }
+    }
+})
